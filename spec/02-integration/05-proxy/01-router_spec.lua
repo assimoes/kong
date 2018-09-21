@@ -1089,7 +1089,8 @@ for _, strategy in helpers.each_strategy() do
 
         it("(" .. i .. ") " .. config ..
            " is not appended to upstream url " .. args[1] ..
-           " (with " .. (args[2] and ("uri " .. args[2]) or ("host test" .. i .. ".domain.org")) .. ")" ..
+           " (with " .. (args[2] and ("uri " .. args[2]) or
+           ("host test" .. i .. ".domain.org")) .. ")" ..
            " when requesting " .. args[3], function()
           check(i, args[3], args[4])
         end)

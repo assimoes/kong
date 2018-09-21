@@ -193,7 +193,7 @@ local function marshall_route(r)
 
         else
           -- regex URI
-          local strip_regex  = path .. [[?(?<stripped_uri>.*)]]
+          local strip_regex  = path .. [[(?<stripped_uri>.*)]]
           local has_captures = has_capturing_groups(path)
 
           local uri_t    = {
@@ -764,7 +764,8 @@ function _M.new(routes)
 
             if matched_route.strip_uri then
               -- we drop the matched part, replacing it with the upstream path
-              if sub(upstream_base, -1, -1) == "/" and sub(request_postfix, 1, 1) == "/" then
+              if sub(upstream_base, -1, -1) == "/" and
+                 sub(request_postfix, 1, 1) == "/" then
                 -- double "/", so drop the first
                 upstream_uri = sub(upstream_base, 1, -2) .. request_postfix
 
